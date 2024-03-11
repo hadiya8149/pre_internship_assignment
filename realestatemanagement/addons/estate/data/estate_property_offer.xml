@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="offer_1" model="estate.property.offer">
+            <field name="price">45000</field>
+            <field name="status">accepted</field>
+        </record>
+        <record id="offer_2" model="estate.property.offer">
+            <field name="price">35000</field>
+            <field name="status">refused</field>
+        </record>
+    </data>
+</odoo>

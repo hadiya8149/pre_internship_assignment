@@ -1,0 +1,128 @@
+<odoo>
+    <record id="properties_model_action" model="ir.actions.act_window">
+    <field name="name">HadiyaProperties</field>
+    <field name="res_model">estate.property</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<record model="ir.ui.view" id="estate_properties_tree_view">
+    <field name="name">properties_tree.view</field>
+    <field name="model">estate.property</field>
+    <field name="priority" eval="16"> </field>
+
+    <field name="arch" type="xml">
+
+
+
+<!--        your view here: form, tree, graph-->
+        <tree string="Properties">
+            <field name="name"/>
+            <field name="postcode"/>
+            <field name="bedrooms"/>
+            <field name="living_area"/>
+            <field name="expected_price"/>
+            <field name="selling_price"/>
+            <field name="date_availability"/>
+
+
+        </tree>
+    </field>
+</record>
+
+<record id="estate_properties_form_view" model="ir.ui.view">
+    <field name="name">estate.properties.form</field>
+    <field name="model">estate.property</field>
+    <field name="arch" type="xml">
+        <form string="Property Details">
+            <sheet>
+                   <h1><field name="name"/></h1>
+
+                <label for="tag_ids" string="tags"/><field name="tag_ids"  />
+               <div class="row">
+                   <group>
+                       <group>
+                           <div class="col" colspan="2">
+                               <label for="property_type_id" string="Property Type"/> <field class="oe_inline" name="property_type_id"/>
+                    <label for="postcode" string="Postcode"/><field class="oe_inline" name="postcode"/>
+                </div>
+                        <field class="oe_inline" name="date_availability"/>
+                       </group>
+
+                <div class="col" colspan="2">
+                    <group>
+                        <field class="oe_inline" name="selling_price"/>
+                    </group>
+                    <label for="expected_price" string="Expected  price"/><field class="oe_inline" name="expected_price"/>
+                </div>
+                   </group>
+                </div>
+                    <group>
+                        <notebook colspan="2" name="description">
+                            <page string="description">
+
+                                <group>
+                                    <field name="description"/>
+                                    <field name="living_area"/>
+                                    <field name="facades"/>
+                                    <field name="garage"/>
+                                    <field name="garden"/>
+                                    <field name="garden_orientation"/>
+                                    <field name="garden_area"/>
+                                </group>
+                            </page>
+                            <page string="other_info">
+                                <group>
+                                    <field name="buyer_id"/>
+                                    <field name="seller_id"/>
+                                </group>
+
+                            </page>
+                            <page string="offers" >
+                            <group>
+                                <field name="offer_ids" >
+                                    <tree>
+                                        <field name="price"/>
+                                        <field name="status"/>
+                                        <field name="partner_id"/>
+                                    </tree>
+                                </field>
+                            </group></page>
+                        </notebook>
+
+                    </group>
+            </sheet>
+
+        </form>
+    </field>
+</record>
+    <record id="search_property_tree_view" model="ir.ui.view">
+        <field name="name">Search_properties</field>
+        <field name="model">estate.property</field>
+       <field name="arch" type="xml">
+           <search>
+               <field name="name"/>
+               <field name="postcode"/>
+               <field name="expected_price"/>
+               <field name="bedrooms"/>
+               <field name="facades"/>
+               <field name="living_area"/>
+
+               <filter name="state" string="New or Offer received" domain="['|',('state', '=','new'),('state','=','offer received')]"/>
+               <filter name="active" string="show all" domain="['|',('active', '=','True'),('active','=','False')]"/>
+
+               <filter string="location" name="postcode" context="{'group_by':'postcode'}" />
+           </search>
+       </field>
+    </record>
+    <menuitem id="menu_root" name="Real-Estate">
+        <menuitem id="advertisement_menu" name="Advertisement">
+            <menuitem id="properties_menu"  name="Properties" sequence="10" action="properties_model_action"/>
+
+        </menuitem>
+               <menuitem id="settings_menu" name="Settings">
+                <menuitem id="Types_menu" name="Types" sequence="10" action="property_type_action"/>
+                <menuitem id="Tags_menu" name="Tags" sequence="10" action="property_tags_action"/>
+               </menuitem>
+    </menuitem>
+
+</odoo>

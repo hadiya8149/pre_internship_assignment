@@ -1,0 +1,21 @@
+<odoo>
+    <record id="property_type_action" model="ir.actions.act_window">
+        <field name="name">Property type</field>
+        <field name="res_model">estate.property.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record model="ir.ui.view" id="property_type_tree_view">
+        <field name="name">property_type_tree.view</field>
+        <field name="model">estate.property.type</field>
+        <field name="priority" eval="16"> </field>
+            <field name="arch" type="xml">
+
+            <form string="property types">
+                <sheet>
+                    <h1>
+            <field name="name"/></h1>
+                </sheet>
+            </form>
+            </field>
+    </record>
+    </odoo>

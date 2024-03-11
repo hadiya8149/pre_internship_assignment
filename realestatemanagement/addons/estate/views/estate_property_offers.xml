@@ -1,0 +1,15 @@
+<odoo>
+    <record model="ir.ui.view" id="property_offer_tree_view">
+        <field name="name">property_offer_tree.view</field>
+        <field name="model">estate.property.offer</field>
+        <field name="priority" eval="16"> </field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="price"/>
+                <field name="partner_id"/>
+                <field name="status"/>
+
+            </tree>
+        </field>
+    </record>
+</odoo>
