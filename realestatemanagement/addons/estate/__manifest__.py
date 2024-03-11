@@ -23,14 +23,14 @@
   'data': [
     'security/ir.model.access.csv',
 
+    'data/property_tags.xml',
     'data/estate.xml',
     'data/estate_property_type.xml',
-    'data/property_tags.xml',
     'data/estate_property_offer.xml',
-           'views/estate_property_views.xml',
+    'views/estate_property_offers.xml',
           'views/estate_property_type.xml',
           'views/estate_property_tags.xml',
-            'views/estate_property_offers.xml'
+      'views/estate_property_views.xml',
 
            ],
 'depends': [  'base' ],

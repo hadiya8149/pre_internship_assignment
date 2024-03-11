@@ -37,7 +37,7 @@
             <sheet>
                    <h1><field name="name"/></h1>
 
-                <label for="tag_ids" string="tags"/><field name="tag_ids"  />
+<!--                <label for="tag_ids" string="tags"/><field name="tag_ids" widget="many2many_tags"  />-->
                <div class="row">
                    <group>
                        <group>
