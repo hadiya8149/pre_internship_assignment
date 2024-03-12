@@ -55,7 +55,7 @@ class EstateProperties(models.Model):
                 record.garden_orientation = "north"
             else:
                 record.garden_area=0
-                record.garden_orientation="south"
+                record.garden_orientation=False
     def cancel_ad(self):
         # raise error if it is already sold
         for record in self:

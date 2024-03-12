@@ -10,23 +10,27 @@ class EstatePropertyOffer(models.Model):
     partner_id=fields.Many2one("res.partner",   string="partner_id")
     property_id=fields.Many2one("estate.property", string="property_id", store=True)
     status=fields.Selection(string="status", selection=[('accepted','Accepted'), ('refused', 'Refused')], copy=False)
-    validity = fields.Integer(default=7)
-    deadline=fields.Date(default=datetime.today()+timedelta(7),compute="_compute_deadline", inverse="_inverse_deadline")
-    @api.depends("create_date", "validity")
+    validity = fields.Integer()
+    deadline=fields.Date(compute="_compute_deadline", inverse="_inverse_deadline")
+    @api.depends("create_date", "validity", "deadline")
     def _compute_deadline(self):
         for record in self:
-            if record.deadline:
-                print(imedelta.days(timedelta(record.create_date.date())-timedelta(record.deadline)))
-
-                record.deadline=timedelta(record.create_date.date())+timedelta(validity)
-
+            if record.create_date:
+                date_delta=record.create_date.date()
+                record.deadline=date_delta + timedelta(days=record.validity)
+            else:
+                date_delta=datetime.today()
+                record.deadline=date_delta+timedelta(days=record.validity)
+    @api.depends("validity", "deadline", "creat_date")
     def _inverse_deadline(self):
+
         for record in self:
             if record.create_date:
-                date_delta=record.create_date.date()-record.deadline
-                record.validity=date_delta.days
+                date_delta=record.create_date.date()
+                record.validity=(record.deadline-date_delta).days
             else:
-                record.validity=timedelta.days(timedelta(datetime.today())-timedelta(record.deadline))
+                date_delta=datetime.today()
+                record.validity = (record.deadline - date_delta).days
 
     def refuse_offer(self):
         self.status="refused"
