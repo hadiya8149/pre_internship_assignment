@@ -5,7 +5,9 @@ python --version
 Python 3.8.18
 odoo --version
 16
-install requirements.txt
+```
+
+pip install -r requirements.txt
 wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubuntu4_amd64.deb
 sudo dpkg -i libssl1.1_1.1.0g-2ubuntu4_amd64.deb 
 sudo apt-get install xfonts-base
@@ -25,6 +27,7 @@ pip install python-ldap
 sudo apt-get install python3.8-dev
 sudo apt install build-essential wget git python3-pip python3-dev python3-venv python3-wheel libfreetype6-dev libxml2-dev libzip-dev libsasl2-dev python3-setuptools libjpeg-dev zlib1g-dev libpq-dev libxslt1-dev libldap2-dev libtiff5-dev libopenjp2-7-dev
 
+```
 Create a pycharm project and add the run configuration
 
 Create the following folder structure
