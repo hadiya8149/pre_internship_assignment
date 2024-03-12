@@ -43,7 +43,7 @@
 </div>
             <sheet>
                 <h1><field class="block" name="name"/></h1>
-<!--                    <field name="tag_ids" widget="many2many_tags"  />-->
+                    <field name="tag_ids" widget="many2many_tags"  />
 
                <div class="row">
                    <group>
@@ -134,7 +134,7 @@
         </menuitem>
                <menuitem id="settings_menu" name="Settings">
                 <menuitem id="Types_menu" name="Types" sequence="10" action="property_type_action"/>
-<!--                <menuitem id="Tags_menu" name="Tags" sequence="10" action="property_tags_action"/>-->
+                <menuitem id="Tags_menu" name="Property Tags" sequence="10" action="property_tags_action"/>
                </menuitem>
     </menuitem>
 

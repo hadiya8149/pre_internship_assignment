@@ -1,6 +1,6 @@
 from odoo import fields, models, api
 from datetime import date, timedelta
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 
 class EstateProperties(models.Model):
     _name="estate.property"
@@ -35,18 +35,18 @@ class EstateProperties(models.Model):
             record.total_area = record.living_area + record.garden_area
 
     property_type_id=fields.Many2one("estate.property.type", string="Property Type")
-    # tag_ids=fields.Many2many("property.tag", string="Tags")
+    tag_ids=fields.Many2many("property.tag",relation="property_id", string="Tags")
 
     buyer_id=fields.Many2one("res.partner", string="Buyer", default=lambda self: self.env.user, copy=False)
     seller_id = fields.Many2one("res.partner", string="Seller",default=lambda self: self.env.user)
 
-    offer_ids=fields.One2many("estate.property.offer", inverse_name="partner_id", string="offer")
+    offer_ids=fields.One2many("estate.property.offer", inverse_name="property_id", string="offer")
     best_price = fields.Float(compute="_compute_best_offer")
     @api.depends("offer_ids.price")
     def _compute_best_offer(self):
         for record in self:
-            print(self.offer_ids.price)
-            record.best_price=max(self.offer_ids.mapped('price'), default=0)
+
+            record.best_price=max(self.offer_ids.mapped('price')) if record.offer_ids else 0.0
     @api.depends("garden", "garden_orientation")
     def _compute_garden_properties(self):
         for record in self:
@@ -60,13 +60,19 @@ class EstateProperties(models.Model):
     def cancel_ad(self):
         # raise error if it is already sold
         for record in self:
-            record.active=False
+            if record.state=='sold':
+                raise UserError("Sold properties cannot be canceled.")
+            record.state='canceled'
         return True
     def sold_ad(self):
         # raise error if it is already canceled
         for record in self:
-            record.active=False
-        return True
+            if record.state=='canceled':
+                raise UserError("Canceled properties cannot be sold.")
+            else:
+
+                record.state='sold'
+
 
     @api.constrains('selling_price')
     def _check_selling_price(self):
