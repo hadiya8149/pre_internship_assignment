@@ -15,7 +15,7 @@
 
 
 <!--        your view here: form, tree, graph-->
-        <tree string="Properties">
+        <tree string="Properties" >
             <field name="name"/>
             <field name="postcode"/>
             <field name="bedrooms"/>
