@@ -38,18 +38,12 @@
                 <button name="cancel_ad" type="object" string="Cancel"/>
                 <button name="sold_ad" type="object" string="Sold"/>
             </header>
+<div>
 
+</div>
             <sheet>
-                <group>
-                   <field name="name"/>
-                    <field name="tag_ids">
-                        <tree>
-                            <field name="name"/>
-                        </tree>
-                    </field>
-
-                </group>
-
+                <h1><field class="block" name="name"/></h1>
+<!--                    <field name="tag_ids" widget="many2many_tags"  />-->
 
                <div class="row">
                    <group>
@@ -95,20 +89,17 @@
                             </page>
                             <page string="offers" >
                             <group>
-                                <field name="offer_ids" >
-                                    <tree>
-                                        <field name="price"/>
-                                        <field name="status"/>
-                                        <field name="partner_id"/>
-                                        <field name="deadline"/>
+<!--                                        <field name="offer_ids.price"/>-->
+<!--                                        <field name="status"/>-->
+                                        <field name="offer_ids" string="Partner"/>
+<!--                                        <field name="deadline"/>-->
 
-                                        <button name="refuse_offer" string="Refuse" type="object"/>
-                                        <button name="accept_offer" string="Accept" type="object"/>
+<!--                                        <button name="refuse_offer" string="Refuse" type="object"/>-->
+<!--                                        <button name="accept_offer" string="Accept" type="object"/>-->
 
-                                        <field name="validity"/>
-                                    </tree>
-                                </field>
-                            </group></page>
+<!--                                        <field name="validity"/>-->
+                            </group>
+                            </page>
                         </notebook>
 
                     </group>
@@ -143,7 +134,7 @@
         </menuitem>
                <menuitem id="settings_menu" name="Settings">
                 <menuitem id="Types_menu" name="Types" sequence="10" action="property_type_action"/>
-                <menuitem id="Tags_menu" name="Tags" sequence="10" action="property_tags_action"/>
+<!--                <menuitem id="Tags_menu" name="Tags" sequence="10" action="property_tags_action"/>-->
                </menuitem>
     </menuitem>
 

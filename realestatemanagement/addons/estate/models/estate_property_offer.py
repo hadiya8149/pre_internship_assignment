@@ -7,7 +7,7 @@ class EstatePropertyOffer(models.Model):
         ('check_offer_price', 'CHECK(price>0)', 'Offer price must be strictly positive')
     ]
     price=fields.Float(required=True, string="price")
-    partner_id=fields.Many2one("res.partner",  string="partner_id")
+    partner_id=fields.Many2one("res.partner",   string="partner_id")
     property_id=fields.Many2one("estate.property", string="property_id")
     status=fields.Selection(string="status", selection=[('accepted','Accepted'), ('refused', 'Refused')], copy=False)
     validity = fields.Integer()

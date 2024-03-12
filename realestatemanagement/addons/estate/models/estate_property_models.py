@@ -35,7 +35,7 @@ class EstateProperties(models.Model):
             record.total_area = record.living_area + record.garden_area
 
     property_type_id=fields.Many2one("estate.property.type", string="Property Type")
-    tag_ids=fields.Many2many(comodel_name="property.tag", string="Tags")
+    # tag_ids=fields.Many2many("property.tag", string="Tags")
 
     buyer_id=fields.Many2one("res.partner", string="Buyer", default=lambda self: self.env.user, copy=False)
     seller_id = fields.Many2one("res.partner", string="Seller",default=lambda self: self.env.user)
