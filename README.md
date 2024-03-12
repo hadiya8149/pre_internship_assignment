@@ -32,22 +32,22 @@ Create a pycharm project and add the run configuration
 
 Create the following folder structure
 ```
-tree ./
-```
 
 -addons
-  -estate
-      -model
-         __init__.py
-         __manifest__.py
-      -data
-      -security
-      -views
-      __init__.py
-      __manifest__.py
-      
-  -estate_account
-      -models
+├---estate
+  ├---model
+│ ├--- __init__.py
+│ ├--- __manifest__.py
+│----data
+│----security
+│----views
+│----__init__.py
+│---- __manifest__.py
+│      
+│----estate_account
+│      -models
+```
+
 Create 5 models and their corresponding views;
 estate_property, property_tag, estate_property_offer, estate_property_type, inherited_model
 ## Estate property model
