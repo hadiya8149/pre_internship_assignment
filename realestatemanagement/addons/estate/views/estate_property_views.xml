@@ -24,7 +24,6 @@
             <field name="selling_price"/>
             <field name="date_availability"/>
 
-
         </tree>
     </field>
 </record>
@@ -34,10 +33,24 @@
     <field name="model">estate.property</field>
     <field name="arch" type="xml">
         <form string="Property Details">
-            <sheet>
-                   <h1><field name="name"/></h1>
 
-<!--                <label for="tag_ids" string="tags"/><field name="tag_ids" widget="many2many_tags"  />-->
+            <header>
+                <button name="cancel_ad" type="object" string="Cancel"/>
+                <button name="sold_ad" type="object" string="Sold"/>
+            </header>
+
+            <sheet>
+                <group>
+                   <field name="name"/>
+                    <field name="tag_ids">
+                        <tree>
+                            <field name="name"/>
+                        </tree>
+                    </field>
+
+                </group>
+
+
                <div class="row">
                    <group>
                        <group>
@@ -53,6 +66,7 @@
                         <field class="oe_inline" name="selling_price"/>
                     </group>
                     <label for="expected_price" string="Expected  price"/><field class="oe_inline" name="expected_price"/>
+                    <field name="best_price"/>
                 </div>
                    </group>
                 </div>
@@ -68,6 +82,8 @@
                                     <field name="garden"/>
                                     <field name="garden_orientation"/>
                                     <field name="garden_area"/>
+
+                                    <field name="total_area"/>
                                 </group>
                             </page>
                             <page string="other_info">
@@ -84,6 +100,12 @@
                                         <field name="price"/>
                                         <field name="status"/>
                                         <field name="partner_id"/>
+                                        <field name="deadline"/>
+
+                                        <button name="refuse_offer" string="Refuse" type="object"/>
+                                        <button name="accept_offer" string="Accept" type="object"/>
+
+                                        <field name="validity"/>
                                     </tree>
                                 </field>
                             </group></page>

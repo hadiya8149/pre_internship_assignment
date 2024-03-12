@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="tag_1" model="property.tag">
-            <field name="name">Cozy</field>
+            <field  name="name" >Cozy</field>
         </record>
     </data>
 </odoo>
