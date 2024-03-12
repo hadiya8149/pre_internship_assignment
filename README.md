@@ -31,6 +31,10 @@ sudo apt install build-essential wget git python3-pip python3-dev python3-venv p
 Create a pycharm project and add the run configuration
 
 Create the following folder structure
+```
+tree ./
+```
+
 -addons
   -estate
       -model
