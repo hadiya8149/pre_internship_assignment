@@ -5,9 +5,9 @@ from odoo.exceptions import ValidationError, UserError
 class EstateProperties(models.Model):
     _name="estate.property"
     _description ="Model for Real Estate Management"
-    _sql_constraints = [('check_expected_price', 'CHECK(expected_price>0)',
+    _sql_constraints = [('check_expected_price', 'CHECK(expected_price>=0)',
                          'The expected price should be strictly positive'),
-                        ('check_selling_price', 'CHECK(selling_price>0)', 'Selling price should be strictly positive.')
+                        ('check_selling_price', 'CHECK(selling_price>=0)', 'Selling price should be strictly positive.')
 
                         ]
 
@@ -35,7 +35,7 @@ class EstateProperties(models.Model):
             record.total_area = record.living_area + record.garden_area
 
     property_type_id=fields.Many2one("estate.property.type", string="Property Type")
-    tag_ids=fields.Many2many("property.tag",relation="property_id", string="Tags")
+    tag_ids=fields.Many2many("property.tag",relation = "tag_estate_rel",string="Tags")
 
     buyer_id=fields.Many2one("res.partner", string="Buyer", default=lambda self: self.env.user, copy=False)
     seller_id = fields.Many2one("res.partner", string="Seller",default=lambda self: self.env.user)
@@ -45,8 +45,7 @@ class EstateProperties(models.Model):
     @api.depends("offer_ids.price")
     def _compute_best_offer(self):
         for record in self:
-
-            record.best_price=max(self.offer_ids.mapped('price')) if record.offer_ids else 0.0
+            record.best_price=max(record.offer_ids.mapped('price')) if record.offer_ids else 0.0
     @api.depends("garden", "garden_orientation")
     def _compute_garden_properties(self):
         for record in self:
@@ -77,5 +76,5 @@ class EstateProperties(models.Model):
     @api.constrains('selling_price')
     def _check_selling_price(self):
         for record in self:
-            if record.selling_price<(0.9*record.expected_price):
+            if record.selling_price<(0.9*record.expected_price) and record.selling_price != 0.0:
                 raise ValidationError("The selling price can't be 90% lower than expected_price")

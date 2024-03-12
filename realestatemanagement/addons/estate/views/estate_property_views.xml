@@ -95,7 +95,7 @@
 <!--                                        <field name="deadline"/>-->
 
 <!--                                        <button name="refuse_offer" string="Refuse" type="object"/>-->
-<!--                                        <button name="accept_offer" string="Accept" type="object"/>-->
+<!--                                        -->
 
 <!--                                        <field name="validity"/>-->
                             </group>
