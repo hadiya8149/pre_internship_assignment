@@ -17,7 +17,7 @@ class EstateProperties(models.Model):
     date_availability = fields.Date(default=lambda x: (date.today()+timedelta(days=90)), copy=False)
 
     expected_price= fields.Float(required=True)
-    selling_price = fields.Float(readonly=True, copy=False)
+    selling_price = fields.Float(readonly=True,default=0, copy=False)
     bedrooms= fields.Integer(default=2)
     living_area=fields.Integer(string="living_area")
     facades=fields.Integer()
@@ -25,7 +25,7 @@ class EstateProperties(models.Model):
     garden=fields.Boolean()
     garden_area=fields.Integer(string="garden_area",compute="_compute_garden_properties")
     garden_orientation = fields.Selection(string='Garden Orientation', selection =[('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West')])
-    state=fields.Selection(required=True, default="new", copy=False, string='Status', selection =[('new', 'New'), ('offer received', 'Offer received'), ('offer accepted', 'Offer accepted'), ('sold', 'Sold'), ('canceled', 'Canceled')])
+    state=fields.Selection(required=True, default="new", copy=False, string='Status', selection =[('new', 'New'), ('offer refused', 'Offer refused'), ('offer accepted', 'Offer accepted'), ('sold', 'Sold'), ('canceled', 'Canceled')])
     active = fields.Boolean(default=True)
     total_area=fields.Integer(compute="_compute_total_area")
 

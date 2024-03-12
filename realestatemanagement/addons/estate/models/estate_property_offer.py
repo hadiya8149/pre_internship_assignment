@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 from datetime import datetime, timedelta
+from odoo.exceptions import UserError
 class EstatePropertyOffer(models.Model):
     _name="estate.property.offer"
     _description="Offers received on each properties"
@@ -37,7 +38,16 @@ class EstatePropertyOffer(models.Model):
         return self.status
 
     def accept_offer(self):
-        # if the offer is accepted set the status to accepted.
-        # if the offer is already accepted then state an offer has already been accepted
-        # just simply change the active to false
-        pass
+        for record in self:
+            all_offers=record.property_id.offer_ids
+            accepted_offer=all_offers.filtered(lambda x: x.status =='accepted')
+            if accepted_offer:
+                raise UserError("An offer has already been accepted on this property.")
+            else:
+                record.status='accepted'
+                # set the buyer and corresping price as selling price
+                for record in self:
+                    record.property_id.buyer_id=record.partner_id.id
+                    record.property_id.selling_price=record.price
+
+        return True

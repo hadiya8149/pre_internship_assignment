@@ -5,7 +5,7 @@
       <field name="name">Cozy Apartment in City Center</field>
       <field name="description">A charming one-bedroom apartment located in the heart of the city. Perfect for young professionals or couples.</field>
       <field name="postcode">12345</field>
-      <field name="selling_price">4500000</field>
+      <field name="selling_price">0</field>
       <field name="expected_price">250000</field>
       <field name="bedrooms">1</field>
       <field name="living_area">50</field>
@@ -21,7 +21,7 @@
     <record id="estate_property_2" model="estate.property">
       <field name="name">Spacious Family House in Suburbs</field>
         <field name="expected_price">420000</field>
-        <field name="selling_price">6500000</field>
+        <field name="selling_price">0</field>
         <field name="state">canceled</field>
         <field name="active">True</field>
       </record>

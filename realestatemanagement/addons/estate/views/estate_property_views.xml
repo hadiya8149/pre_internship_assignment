@@ -60,7 +60,7 @@
                         <field class="oe_inline" name="selling_price"/>
                     </group>
                     <label for="expected_price" string="Expected  price"/><field class="oe_inline" name="expected_price"/>
-                    <field name="best_price"/>
+                    <label for="best_price" string="Best price"/><field name="best_price"/>
                 </div>
                    </group>
                 </div>
@@ -89,15 +89,7 @@
                             </page>
                             <page string="offers" >
                             <group>
-<!--                                        <field name="offer_ids.price"/>-->
-<!--                                        <field name="status"/>-->
                                         <field name="offer_ids" string="Partner"/>
-<!--                                        <field name="deadline"/>-->
-
-<!--                                        <button name="refuse_offer" string="Refuse" type="object"/>-->
-<!--                                        -->
-
-<!--                                        <field name="validity"/>-->
                             </group>
                             </page>
                         </notebook>
