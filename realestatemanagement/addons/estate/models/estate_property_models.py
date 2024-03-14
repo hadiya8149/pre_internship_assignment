@@ -22,10 +22,10 @@ class EstateProperties(models.Model):
     living_area=fields.Integer(string="living_area")
     facades=fields.Integer()
     garage=fields.Boolean()
-    garden=fields.Boolean()
+    garden=fields.Boolean(string="garden")
     garden_area=fields.Integer(string="garden_area",compute="_compute_garden_properties")
     garden_orientation = fields.Selection(string='Garden Orientation', selection =[('north', 'North'), ('south', 'South'), ('east', 'East'), ('west', 'West')])
-    state=fields.Selection(required=True, default="new", copy=False, string='Status', selection =[('new', 'New'), ('offer refused', 'Offer refused'), ('offer accepted', 'Offer accepted'), ('sold', 'Sold'), ('canceled', 'Canceled')])
+    state=fields.Selection(required=True, default="new", copy=False, string='Status', selection =[('new', 'New'), ('offer received', 'Offer received'), ('offer accepted', 'Offer accepted'), ('sold', 'Sold'), ('canceled', 'Canceled')])
     active = fields.Boolean(default=True)
     total_area=fields.Integer(compute="_compute_total_area")
 
@@ -34,7 +34,7 @@ class EstateProperties(models.Model):
         for record in self:  # This loop might be unnecessary
             record.total_area = record.living_area + record.garden_area
 
-    property_type_id=fields.Many2one("estate.property.type", string="Property Type")
+    property_type_id=fields.Many2one("estate.property.type", string="Property Type", options="{'no_quick_create':true}")
     tag_ids=fields.Many2many("property.tag",string="property tags")
 
     buyer_id=fields.Many2one("res.partner", string="Buyer", default=lambda self: self.env.user, copy=False)

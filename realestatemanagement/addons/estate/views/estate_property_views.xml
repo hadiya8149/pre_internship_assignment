@@ -37,6 +37,7 @@
             <header>
                 <button name="cancel_ad" type="object" string="Cancel"/>
                 <button name="sold_ad" type="object" string="Sold"/>
+                <field name="state" widget="statusbar" status_bar_visible="new,offer received,offer accepted,sold"/>
             </header>
 <div>
 
@@ -74,8 +75,8 @@
                                     <field name="facades"/>
                                     <field name="garage"/>
                                     <field name="garden"/>
-                                    <field name="garden_orientation"/>
-                                    <field name="garden_area"/>
+                                    <field name="garden_orientation" attrs="{'invisible':[('garden','=',False)]}" />
+                                    <field name="garden_area" attrs="{'invisible':[('garden','=',False)]}"/>
 
                                     <field name="total_area"/>
                                 </group>
